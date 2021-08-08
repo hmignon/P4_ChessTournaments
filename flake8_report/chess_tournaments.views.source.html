@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>.\chess_tournaments\views.py - flake8 annotated source</title>
+      <meta http-equiv="Content-Type" value="text/html; charset=UTF-8">
+      <link rel="stylesheet" href="styles.css">
+   </head>
+   <body>
+      <div id="masthead" class="sev-2"></div>
+      <div id="page">
+         <h1>
+            <a href="chess_tournaments.views.report.html">
+               <img src="back.svg" alt="&#x2B05;">
+               .\chess_tournaments\views.py source
+            </a>
+         </h1>
+
+         <div id="doc">
+            <div id="l1"
+               class="code sev- "><tt><i>1</i> <span class="k">class</span> <span class="nc">MenuViews</span><span class="p">:</span></tt>
+            </div>
+            <div id="l2"
+               class="code sev- "><tt><i>2</i> &nbsp;</tt>
+            </div>
+            <div id="l3"
+               class="code sev- "><tt><i>3</i>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></tt>
+            </div>
+            <div id="l4"
+               class="code sev- "><tt><i>4</i>         <span class="k">pass</span></tt>
+            </div>
+            <div id="l5"
+               class="code sev- "><tt><i>5</i> &nbsp;</tt>
+            </div>
+            <div id="l6"
+               class="code sev- "><tt><i>6</i>     <span class="nd">@staticmethod</span></tt>
+            </div>
+            <div id="l7"
+               class="code sev- "><tt><i>7</i>     <span class="k">def</span> <span class="nf">app_title</span><span class="p">():</span></tt>
+            </div>
+            <div id="l8"
+               class="code sev- "><tt><i>8</i>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">----------------------------------&quot;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l9"
+               class="code sev- "><tt><i>9</i>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;        CHESS TOURNAMENTS&quot;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l10"
+               class="code sev- "><tt><i>10</i>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;----------------------------------&quot;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l11"
+               class="code sev- "><tt><i>11</i> &nbsp;</tt>
+            </div>
+            <div id="l12"
+               class="code sev- "><tt><i>12</i>     <span class="nd">@staticmethod</span></tt>
+            </div>
+            <div id="l13"
+               class="code sev- "><tt><i>13</i>     <span class="k">def</span> <span class="nf">main_menu</span><span class="p">():</span></tt>
+            </div>
+            <div id="l14"
+               class="code sev- "><tt><i>14</i>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="s2">&quot;- MAIN MENU -</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l15"
+               class="code sev- "><tt><i>15</i>         <span class="c1"># print(&quot;[1] Create new tournament&quot;)</span></tt>
+            </div>
+            <div id="l16"
+               class="code sev- "><tt><i>16</i>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[2] Resume tournament&quot;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l17"
+               class="code sev- "><tt><i>17</i>         <span class="c1"># print(&quot;[3] Edit tournament&quot;)</span></tt>
+            </div>
+            <div id="l18"
+               class="code sev- "><tt><i>18</i>         <span class="c1"># print(&quot;[4] Create new player&quot;)</span></tt>
+            </div>
+            <div id="l19"
+               class="code sev- "><tt><i>19</i>         <span class="c1"># print(&quot;[5] Edit existing player&quot;)</span></tt>
+            </div>
+            <div id="l20"
+               class="code sev- "><tt><i>20</i>         <span class="c1"># print(&quot;[6] Reports&quot;)</span></tt>
+            </div>
+            <div id="l21"
+               class="code sev- "><tt><i>21</i>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">[exit] Exit program&quot;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l22"
+               class="code sev- "><tt><i>22</i> &nbsp;</tt>
+            </div>
+            <div id="l23"
+               class="code sev- "><tt><i>23</i>     <span class="nd">@staticmethod</span></tt>
+            </div>
+            <div id="l24"
+               class="code sev- "><tt><i>24</i>     <span class="k">def</span> <span class="nf">create_tournament</span><span class="p">():</span></tt>
+            </div>
+            <div id="l25"
+               class="code sev- "><tt><i>25</i>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="s2">&quot;- NEW TOURNAMENT -</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l26"
+               class="code sev- "><tt><i>26</i>         <span class="c1"># input name, location, start date, end date, players, and description</span></tt>
+            </div>
+            <div id="l27"
+               class="code sev- "><tt><i>27</i>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">[back] Back to main menu&quot;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l28"
+               class="code sev- "><tt><i>28</i> &nbsp;</tt>
+            </div>
+            <div id="l29"
+               class="code sev- "><tt><i>29</i>     <span class="nd">@staticmethod</span></tt>
+            </div>
+            <div id="l30"
+               class="code sev- "><tt><i>30</i>     <span class="k">def</span> <span class="nf">resume_tournament</span><span class="p">(</span><span class="n">tournament_list</span><span class="p">,</span> <span class="n">id_list</span><span class="p">):</span></tt>
+            </div>
+            <div id="l31"
+               class="code sev- "><tt><i>31</i>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="s2">&quot;- RESUME TOURNAMENT -</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l32"
+               class="code sev- "><tt><i>32</i> &nbsp;</tt>
+            </div>
+            <div id="l33"
+               class="code sev- "><tt><i>33</i>         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tournament_list</span><span class="p">)):</span></tt>
+            </div>
+            <div id="l34"
+               class="code sev- "><tt><i>34</i>             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">id_list</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;]&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l35"
+               class="code sev- "><tt><i>35</i>             <span class="nb">print</span><span class="p">(</span><span class="n">tournament_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; | &#39;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l36"
+               class="code sev- "><tt><i>36</i>             <span class="nb">print</span><span class="p">(</span><span class="n">tournament_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;location&quot;</span><span class="p">],</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot; | &quot;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l37"
+               class="code sev- "><tt><i>37</i>             <span class="nb">print</span><span class="p">(</span><span class="n">tournament_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;description&quot;</span><span class="p">],</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; | &#39;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l38"
+               class="code sev- "><tt><i>38</i>             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Started on : &quot;</span> <span class="o">+</span> <span class="n">tournament_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;start_date&quot;</span><span class="p">])</span></tt>
+            </div>
+            <div id="l39"
+               class="code sev- "><tt><i>39</i> &nbsp;</tt>
+            </div>
+            <div id="l40"
+               class="code sev- "><tt><i>40</i>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">[back] Back to main menu&quot;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l41"
+               class="code sev- "><tt><i>41</i> &nbsp;</tt>
+            </div>
+            <div id="l42"
+               class="code sev- "><tt><i>42</i>     <span class="nd">@staticmethod</span></tt>
+            </div>
+            <div id="l43"
+               class="code sev- "><tt><i>43</i>     <span class="k">def</span> <span class="nf">input_prompt</span><span class="p">():</span></tt>
+            </div>
+            <div id="l44"
+               class="code sev- "><tt><i>44</i>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Type number option and press enter : &quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l45"
+               class="code sev- "><tt><i>45</i> &nbsp;</tt>
+            </div>
+            <div id="l46"
+               class="code sev- "><tt><i>46</i>     <span class="nd">@staticmethod</span></tt>
+            </div>
+            <div id="l47"
+               class="code sev- "><tt><i>47</i>     <span class="k">def</span> <span class="nf">are_you_sure_exit</span><span class="p">():</span></tt>
+            </div>
+            <div id="l48"
+               class="code sev- "><tt><i>48</i>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Are you sure you want to exit the program ? [y/n] &quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l49"
+               class="code sev- "><tt><i>49</i> &nbsp;</tt>
+            </div>
+            <div id="l50"
+               class="code sev- "><tt><i>50</i>     <span class="nd">@staticmethod</span></tt>
+            </div>
+            <div id="l51"
+               class="code sev- "><tt><i>51</i>     <span class="k">def</span> <span class="nf">input_error</span><span class="p">():</span></tt>
+            </div>
+            <div id="l52"
+               class="code sev- "><tt><i>52</i>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Input error, please enter a valid option.&quot;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l53"
+               class="code sev- "><tt><i>53</i> &nbsp;</tt>
+            </div>
+            <div id="l54"
+               class="code sev- "><tt><i>54</i> &nbsp;</tt>
+            </div>
+            <div id="l55"
+               class="code sev- "><tt><i>55</i> <span class="k">class</span> <span class="nc">RoundViews</span><span class="p">:</span></tt>
+            </div>
+            <div id="l56"
+               class="code sev- "><tt><i>56</i>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></tt>
+            </div>
+            <div id="l57"
+               class="code sev- "><tt><i>57</i>         <span class="k">pass</span></tt>
+            </div>
+            <div id="l58"
+               class="code sev- "><tt><i>58</i> &nbsp;</tt>
+            </div>
+            <div id="l59"
+               class="code sev- "><tt><i>59</i>     <span class="nd">@staticmethod</span></tt>
+            </div>
+            <div id="l60"
+               class="code sev- "><tt><i>60</i>     <span class="k">def</span> <span class="nf">round_number</span><span class="p">(</span><span class="n">current_round</span><span class="p">):</span></tt>
+            </div>
+            <div id="l61"
+               class="code sev- "><tt><i>61</i>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">- ROUND &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">current_round</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; - &quot;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l62"
+               class="code sev- "><tt><i>62</i> &nbsp;</tt>
+            </div>
+            <div id="l63"
+               class="code sev- "><tt><i>63</i>     <span class="nd">@staticmethod</span></tt>
+            </div>
+            <div id="l64"
+               class="code sev- "><tt><i>64</i>     <span class="k">def</span> <span class="nf">display_match</span><span class="p">(</span><span class="n">match_number</span><span class="p">,</span> <span class="n">player1</span><span class="p">,</span> <span class="n">player2</span><span class="p">):</span></tt>
+            </div>
+            <div id="l65"
+               class="code sev- "><tt><i>65</i>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Match &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">match_number</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; :&quot;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l66"
+               class="code sev- "><tt><i>66</i>         <span class="nb">print</span><span class="p">(</span></tt>
+            </div>
+            <div id="l67"
+               class="code sev- "><tt><i>67</i>             <span class="n">player1</span><span class="p">[</span><span class="s2">&quot;last_name&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; | &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">player1</span><span class="p">[</span><span class="s2">&quot;score&quot;</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot; | &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">player1</span><span class="p">[</span><span class="s2">&quot;rank&quot;</span><span class="p">])</span></tt>
+            </div>
+            <div id="l68"
+               class="code sev- "><tt><i>68</i>             <span class="o">+</span> <span class="s2">&quot;    vs.    &quot;</span> <span class="o">+</span></tt>
+            </div>
+            <div id="l69"
+               class="code sev- "><tt><i>69</i>             <span class="n">player2</span><span class="p">[</span><span class="s2">&quot;last_name&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; | &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">player2</span><span class="p">[</span><span class="s2">&quot;score&quot;</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot; | &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">player2</span><span class="p">[</span><span class="s2">&quot;rank&quot;</span><span class="p">])</span></tt>
+            </div>
+            <div id="l70"
+               class="code sev- "><tt><i>70</i>         <span class="p">)</span></tt>
+            </div>
+            <div id="l71"
+               class="code sev- "><tt><i>71</i> &nbsp;</tt>
+            </div>
+            <div id="l72"
+               class="code sev- "><tt><i>72</i>     <span class="nd">@staticmethod</span></tt>
+            </div>
+            <div id="l73"
+               class="code sev- "><tt><i>73</i>     <span class="k">def</span> <span class="nf">round_over</span><span class="p">():</span></tt>
+            </div>
+            <div id="l74"
+               class="code sev- "><tt><i>74</i>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Round over ? [ok]&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l75"
+               class="code sev- "><tt><i>75</i> &nbsp;</tt>
+            </div>
+            <div id="l76"
+               class="code sev- "><tt><i>76</i>     <span class="nd">@staticmethod</span></tt>
+            </div>
+            <div id="l77"
+               class="code sev- "><tt><i>77</i>     <span class="k">def</span> <span class="nf">score_options</span><span class="p">(</span><span class="n">match_number</span><span class="p">):</span></tt>
+            </div>
+            <div id="l78"
+               class="code sev- "><tt><i>78</i>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Match &quot;</span><span class="p">,</span> <span class="n">match_number</span><span class="p">)</span></tt>
+            </div>
+            <div id="l79"
+               class="code sev- "><tt><i>79</i>         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[0] Draw&#39;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l80"
+               class="code sev- "><tt><i>80</i>         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[1] Player 1 wins&#39;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l81"
+               class="code sev- "><tt><i>81</i>         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[2] Player 2 wins&#39;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l82"
+               class="code sev- "><tt><i>82</i> &nbsp;</tt>
+            </div>
+            <div id="l83"
+               class="code sev- "><tt><i>83</i>     <span class="nd">@staticmethod</span></tt>
+            </div>
+            <div id="l84"
+               class="code sev- "><tt><i>84</i>     <span class="k">def</span> <span class="nf">score_input_prompt</span><span class="p">():</span></tt>
+            </div>
+            <div id="l85"
+               class="code sev- "><tt><i>85</i>         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Who won ?&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l86"
+               class="code sev- "><tt><i>86</i> &nbsp;</tt>
+            </div>
+            <div id="l87"
+               class="code sev- "><tt><i>87</i>     <span class="nd">@staticmethod</span></tt>
+            </div>
+            <div id="l88"
+               class="code sev- "><tt><i>88</i>     <span class="k">def</span> <span class="nf">display_results</span><span class="p">(</span><span class="n">players</span><span class="p">):</span></tt>
+            </div>
+            <div id="l89"
+               class="code sev- "><tt><i>89</i>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">- FINAL SCORES -</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l90"
+               class="code sev- "><tt><i>90</i>         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">players</span><span class="p">)):</span></tt>
+            </div>
+            <div id="l91"
+               class="code sev- "><tt><i>91</i>             <span class="nb">print</span><span class="p">(</span><span class="n">players</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;last_name&#39;</span><span class="p">],</span> <span class="s2">&quot;=&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l92"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W292
+                     </span>
+                     No newline at end of file</li>
+               
+               </ul><tt><i>92</i>             <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">players</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;score&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot; pts&quot;</span><span class="p">)</span></tt>
+            </div>
+            
+         </div>
+      </div>
+   </body>
+</html>
