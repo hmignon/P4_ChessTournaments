@@ -1,5 +1,5 @@
 from chess_tournaments.controllers.menu import MenuController
-from chess_tournaments.views.views import MenuViews
+from chess_tournaments.views.round import MenuViews
 
 
 def main():

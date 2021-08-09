@@ -1,24 +1,17 @@
 class Round:
 
-    def __init__(self):
-        pass
-
-    @classmethod
-    def sort_players_by_rank(cls, players):
+    @staticmethod
+    def sort_players_by_rank(players):
         players = sorted(players, key=lambda x: x.get('rank'))
         return players
 
-    @classmethod
-    def split_players(cls, players):
+    @staticmethod
+    def split_players(players):
         half = len(players) // 2
         return players[:half], players[half:]
 
-    @classmethod
-    def next_rounds(cls):
-        pass
-
-    @classmethod
-    def get_score(cls, response, scores_list):
+    @staticmethod
+    def get_score(response, scores_list):
         if response == "0":
             scores_list.extend([0.5, 0.5])
         elif response == "1":
@@ -28,8 +21,8 @@ class Round:
 
         return scores_list
 
-    @classmethod
-    def update_scores(cls, players, scores_list):
+    @staticmethod
+    def update_scores(players, scores_list):
         for i in range(len(players)):
             players[i]["score"] += scores_list[i]
 
@@ -38,7 +31,6 @@ class Round:
     @staticmethod
     def sort_players_by_score(players):
         players = sorted(players, key=lambda x: x.get('score'), reverse=True)
-
         return players
 
     @staticmethod

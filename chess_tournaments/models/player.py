@@ -10,9 +10,7 @@ class Player:
             birthday: str,
             gender: str,
             rank: int,
-            player_id=0
     ):
-        self.player_id = player_id
         self.last_name = last_name
         self.first_name = first_name
         self.birthday = birthday
@@ -23,7 +21,6 @@ class Player:
 
     def serialize_player(self):
         return {
-            "id:": self.player_id,
             "last_name": self.last_name,
             "first_name": self.first_name,
             "date_of_birth": self.birthday,

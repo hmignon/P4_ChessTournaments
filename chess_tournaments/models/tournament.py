@@ -12,10 +12,8 @@ class Tournament:
             description: str,
             time_control: str,
             current_round: int,
-            rounds_total=4,
-            tournament_id=0
+            rounds_total=4
     ):
-        self.tournament_id = tournament_id
         self.name = name
         self.location = location
         self.start_date = start_date
@@ -29,7 +27,6 @@ class Tournament:
 
     def serialize_tournament(self):
         return {
-            "id": self.tournament_id,
             "name": self.name,
             "location": self.location,
             "start_date": self.start_date,
@@ -42,8 +39,8 @@ class Tournament:
             "matches": self.matches
         }
 
-    @classmethod
-    def load_tournament_db(cls):
+    @staticmethod
+    def load_tournament_db():
         db = TinyDB("database/tournaments.json")
         db.all()
         id_list = []

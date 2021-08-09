@@ -1,5 +1,5 @@
 from chess_tournaments.models.round import Round
-from chess_tournaments.views.views import RoundViews
+from chess_tournaments.views.round import RoundViews
 
 
 class TournamentController:
@@ -13,24 +13,25 @@ class TournamentController:
         rounds_total = tournament["total_rounds"]
         current_round = tournament["current_round"]
         if current_round == 1:
-            players = TournamentController.first_round(players, rounds_total, current_round)
+            players = TournamentController.first_round(tournament, players, rounds_total, current_round)
             current_round += 1
             while current_round <= rounds_total:
-                players = TournamentController.next_round(players, rounds_total, current_round)
+                players = TournamentController.next_rounds(tournament, players, rounds_total, current_round)
                 current_round += 1
         elif current_round > 1:
             while current_round <= rounds_total:
-                players = TournamentController.next_round(players, rounds_total, current_round)
+                players = TournamentController.next_rounds(tournament, players, rounds_total, current_round)
                 current_round += 1
 
         TournamentController.tournament_end(players)
 
     @staticmethod
-    def first_round(players, rounds_total, current_round):
-        top_players, bottom_players = Round.split_players(Round.sort_players_by_rank(players))
+    def first_round(tournament, players, rounds_total, current_round):
+        top_players, bottom_players = Round.split_players(players)
         RoundViews.round_number(current_round)
         for i in range(rounds_total):
-            RoundViews.display_match(i+1, top_players[i], bottom_players[i])
+            match = RoundViews.display_match(i+1, top_players[i], bottom_players[i])
+            tournament.append(match)
             top_players[i], bottom_players[i] = Round.update_opponents(top_players[i], bottom_players[i])
             # save to db
         RoundViews.round_over()
@@ -59,15 +60,16 @@ class TournamentController:
         return response
 
     @staticmethod
-    def next_round(players, rounds_total, current_round):
-        players = Round.sort_players_by_score(Round.sort_players_by_rank(players))
+    def next_rounds(tournament, players, rounds_total, current_round):
+        players = Round.sort_players_by_score(players)
         RoundViews.round_number(current_round)
         available_list = players
         players_added = []
         k = 0
         while k < rounds_total:
             if available_list[1]["id"] not in available_list[0]["opponents"]:
-                RoundViews.display_match(k+1, available_list[0], available_list[1])
+                match = RoundViews.display_match(k+1, available_list[0], available_list[1])
+                tournament.append(match)
                 available_list[0], available_list[1] = Round.update_opponents(available_list[0], available_list[1])
                 available_list, players_added = Round.update_player_lists(
                     available_list[0], available_list[1], available_list, players_added
@@ -76,7 +78,8 @@ class TournamentController:
 
             elif available_list[1]["id"] in available_list[0]["opponents"]:
                 try:
-                    RoundViews.display_match(k+1, available_list[0], available_list[2])
+                    match = RoundViews.display_match(k+1, available_list[0], available_list[2])
+                    tournament.append(match)
                     available_list[0], available_list[2] = Round.update_opponents(available_list[0], available_list[2])
 
                     available_list, players_added = Round.update_player_lists(
@@ -85,7 +88,8 @@ class TournamentController:
                     # save to db
 
                 except IndexError:
-                    RoundViews.display_match(k + 1, available_list[0], available_list[1])
+                    match = RoundViews.display_match(k + 1, available_list[0], available_list[1])
+                    tournament.append(match)
                     available_list[0], available_list[1] = Round.update_opponents(available_list[0], available_list[1])
 
                     available_list, players_added = Round.update_player_lists(

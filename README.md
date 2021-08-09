@@ -79,12 +79,11 @@ _Dernier rapport exporté :_
 
 <div id='id-section2'></div>
 
-## 3. Options des menus
+## 2. Options des menus
 
 <div id='id-section2-1'></div>
 
 #### i. Menu Principal
-1. Créer un nouveau tournoi (inactive)
+1. Créer un nouveau tournoi
 2. Reprendre tournoi
-
-    _Reprendre un tournoi en cours ou démarrer un tournoi existant._
+3. Créer un joueur
