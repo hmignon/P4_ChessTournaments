@@ -19,15 +19,16 @@ class Player:
         self.score = 0.0
         self.opponents = []
 
-    def serialize_player(self):
+    @staticmethod
+    def serialize_player(info):
         return {
-            "last_name": self.last_name,
-            "first_name": self.first_name,
-            "date_of_birth": self.birthday,
-            "gender": self.gender,
-            "rank": self.rank,
-            "score": self.score,
-            "opponents": self.opponents
+            "last_name": info[0],
+            "first_name": info[1],
+            "date_of_birth": info[2],
+            "gender": info[3],
+            "rank": int(info[4]),
+            "score": 0.0,
+            "opponents": []
         }
 
     def add_player(self, player_info):
@@ -65,5 +66,17 @@ class Player:
     def update_player_db(self):
         pass
 
-    def update_players_db(self):
-        pass
+    @staticmethod
+    def save_player_db(player):
+        players_db = TinyDB('database/players.json')
+        players_db.insert(player)
+
+    @staticmethod
+    def sort_players_name(players):
+        players = sorted(players, key=lambda x: x.get('last_name'))
+        return players
+
+    @staticmethod
+    def sort_players_rank(players):
+        players = sorted(players, key=lambda x: x.get('rank'))
+        return players

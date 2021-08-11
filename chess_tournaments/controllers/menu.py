@@ -2,6 +2,7 @@ from chess_tournaments.controllers.tournament import TournamentController
 from chess_tournaments.models.player import Player
 from chess_tournaments.models.tournament import Tournament
 from chess_tournaments.views.menu import MenuViews
+from chess_tournaments.views.reports import Reports
 
 
 class MenuController:
@@ -23,6 +24,9 @@ class MenuController:
 
         elif user_input == "3":
             MenuController.new_player()
+
+        elif user_input == "5":
+            MenuController.reports()
 
         elif user_input == "exit":
             MenuViews.are_you_sure_exit()
@@ -49,8 +53,8 @@ class MenuController:
             "start date (dd/mm/yyyy)",
             "end date (dd/mm/yyyy)",
             "description",
-            "amount of players (8 players default)",
-            "amount of rounds (4 rounds default)",
+            "amount of players (8 default)",
+            "amount of rounds (4 default)",
         ]
 
         for item in options:
@@ -82,6 +86,7 @@ class MenuController:
             tournament_info.append("Rapid")
         else:
             MenuViews.input_error()
+            MenuController.input_time_control(tournament_info)
 
         return tournament_info
 
@@ -89,20 +94,22 @@ class MenuController:
     def choose_players(players_total):
         players, id_list = Player.load_player_db()
         tour_players = []
+        for i in range(len(id_list)):
+            players[i]["id"] = id_list[i]
+
         i = 0
         while i < players_total:
-            MenuViews.select_players(players, id_list)
+            MenuViews.select_players(players, i+1)
             MenuViews.input_prompt()
             user_input = input()
 
-            if int(user_input) in id_list:
+            if user_input == str(players[i]["id"]):
                 tour_players.append(players[int(user_input) - 1])
-                id_list.pop()
-                players.remove(players[int(user_input) - 1])
+                # players.remove(players[int(user_input) - 1])
                 i += 1
 
             else:
-                MenuViews.input_error()
+                MenuViews.player_already_selected()
 
         return tour_players
 
@@ -138,10 +145,49 @@ class MenuController:
             MenuViews.input_prompt_text(item)
             user_input = input().title()
             player_info.append(user_input)
+
         MenuViews.review_player(player_info)
         user_input = input().lower()
+
         if user_input == "y":
-            # serialize and save to db
-            pass
+            player = Player.serialize_player(player_info)
+            Player.save_player_db(player)
+            MenuViews.player_saved()
+            MenuController.main_menu_start()
+
         elif user_input == "n":
             MenuController.main_menu_start()
+
+    @staticmethod
+    def reports():
+        MenuViews.reports_menu()
+        MenuViews.input_prompt()
+        user_input = input()
+
+        if user_input == "1":
+            players, id_list = Player.load_player_db()
+            for i in range(len(id_list)):
+                players[i]["id"] = id_list[i]
+            players = Player.sort_players_name(players)
+            Reports.display_players(players)
+
+        elif user_input == "2":
+            players, id_list = Player.load_player_db()
+            for i in range(len(id_list)):
+                players[i]["id"] = id_list[i]
+            players = Player.sort_players_rank(players)
+            Reports.display_players(players)
+
+        elif user_input == "3":
+            pass
+        elif user_input == "4":
+            pass
+        elif user_input == "5":
+            pass
+        elif user_input == "6":
+            pass
+        elif user_input == "back":
+            MenuController.main_menu_start()
+        else:
+            MenuViews.input_error()
+            MenuController.reports()

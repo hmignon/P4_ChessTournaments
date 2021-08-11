@@ -1,21 +1,21 @@
-# from prettytable import PrettyTable
-
 class RoundViews:
+
     def __init__(self):
         pass
 
     @staticmethod
-    def round_number(current_round):
-        print("\n- ROUND " + str(current_round) + " - ")
+    def round_header(current_round, info):
+        print(f"\n\n{info['name'].upper()}, {info['location'].title()}", end=' | ')
+        print(f"Description : {info['description']}")
+        print(f"Start date : {info['start_date']}", end=' | ')
+        print(f"End date : {info['end_date']}", end=' | ')
+        print(f"Time control : {info['time_control']}")
+
+        print(f"\n- ROUND {current_round}/{info['total_rounds']} - ")
 
     @staticmethod
-    def display_match(match_number, player1, player2):
-        print("\nMatch " + str(match_number) + " :")
-        match = player1["last_name"] + " | " + str(player1["score"]) + " | " + str(player1["rank"]) + \
-            "     vs.     " + \
-            player2["last_name"] + " | " + str(player2["score"]) + " | " + str(player2["rank"])
-        print(match)
-        return match
+    def display_matches(table):
+        print(table)
 
     @staticmethod
     def round_over():

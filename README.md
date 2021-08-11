@@ -87,3 +87,5 @@ _Dernier rapport exporté :_
 1. Créer un nouveau tournoi
 2. Reprendre tournoi
 3. Créer un joueur
+4. Modifier un joueur
+5. Rapports

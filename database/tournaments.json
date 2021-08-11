@@ -18,5 +18,5 @@
     {"id": 7, "last_name": "Lachance", "first_name": "Georgette", "date_of_birth": "10/09/1952", "gender": "F", "rank": 6, "score": 0.0, "opponents": []},
     {"id": 8, "last_name": "Picard", "first_name": "Jacques", "date_of_birth": "05/04/1967", "gender": "M", "rank": 4, "score": 0.0, "opponents": []}
   ],
-  "Matches": []
+  "matches": []
 }}}
