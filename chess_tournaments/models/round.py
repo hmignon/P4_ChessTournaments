@@ -1,32 +1,14 @@
-from prettytable import PrettyTable
-
-
 class Round:
 
     @staticmethod
-    def match_setup():
-        table = PrettyTable()
-        table.field_names = [
-            "Match #",
-            "Player 1",
-            "Rank P1",
-            "Score P1",
-            " ",
-            "Player 2",
-            "Rank P2",
-            "Score P2"
-        ]
-
-        return table
-
-    @staticmethod
-    def set_matches(match_number, player1, player2):
+    def set_matches(player1, player2):
         match = [
-            match_number,
+            player1["id"],
             (player1["last_name"] + ", " + player1["first_name"]),
             player1["rank"],
             player1["score"],
             "vs.",
+            player2["id"],
             (player2["last_name"] + ", " + player2["first_name"]),
             player2["rank"],
             player2["score"],

@@ -15,7 +15,7 @@ class MenuViews:
         print("[1] Create new tournament")
         print("[2] Resume tournament")
         print("[3] Create new player")
-        # print("[4] Edit existing player")
+        print("[4] Edit existing player")
         print("[5] Reports")
         print("\n[exit] Exit program")
 
@@ -42,7 +42,8 @@ class MenuViews:
         print(f"\nPlayers ({info[5]} total) :\n")
 
         for item in players:
-            print(f"Player {item['id']} : ", end='')
+            print(f"Player {players.index(item) + 1} : ", end='')
+            print(f"{item['id']}", end=' | ')
             print(f"{item['last_name']}, {item['first_name']}", end=' | ')
             print(f"{item['date_of_birth']}", end=' | ')
             print(f"Rank : {item['rank']}")
@@ -59,15 +60,16 @@ class MenuViews:
             print(f"Rank : {players[i]['rank']}")
 
     @staticmethod
-    def resume_tournament(tournament_list, id_list):
-        print("\n" * 3 + "- RESUME TOURNAMENT -\n")
+    def select_tournament(info, id_list):
+        print("\n" * 3 + "- SELECT TOURNAMENT -\n")
 
-        for i in range(len(tournament_list)):
+        for i in range(len(info)):
             print(f"[{id_list[i]}]", end=' ')
-            print(tournament_list[i]['name'], end=' | ')
-            print(tournament_list[i]['location'], end=" | ")
-            print(tournament_list[i]['description'], end=' | ')
-            print(f"Started on : {tournament_list[i]['start_date']}")
+            print(info[i]['name'], end=' | ')
+            print(info[i]['location'], end=" | ")
+            print(info[i]['description'], end=' | ')
+            print(f"Started on : {info[i]['start_date']}", end=' | ')
+            print(f"Round {info[i]['current_round']}/{info[i]['rounds_total']}")
 
         print("\n[back] Back to main menu")
 
@@ -109,7 +111,7 @@ class MenuViews:
 
     @staticmethod
     def back_to_main_menu():
-        print("Back to main menu ? [y/n] ", end='')
+        print("\nBack to main menu ? [y/n] ", end='')
 
     @staticmethod
     def are_you_sure_exit():

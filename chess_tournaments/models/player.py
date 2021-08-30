@@ -19,16 +19,15 @@ class Player:
         self.score = 0.0
         self.opponents = []
 
-    @staticmethod
-    def serialize_player(info):
+    def serialize_player(self):
         return {
-            "last_name": info[0],
-            "first_name": info[1],
-            "date_of_birth": info[2],
-            "gender": info[3],
-            "rank": int(info[4]),
-            "score": 0.0,
-            "opponents": []
+            "last_name": self.last_name,
+            "first_name": self.first_name,
+            "date_of_birth": self.birthday,
+            "gender": self.gender,
+            "rank": self.rank,
+            "score": self.score,
+            "opponents": self.opponents
         }
 
     def add_player(self, player_info):
@@ -49,7 +48,7 @@ class Player:
 
     def update_rank(self, new_rank: int):
         self.rank = new_rank
-        # inverser les rangs avec le rang remplacé
+        # TODO inverser avec le rang remplacé
         return self.rank
 
     @staticmethod
@@ -59,17 +58,20 @@ class Player:
         id_list = []
         players = []
         for item in players_db:
-            id_list.append(item.doc_id)
+            if len(str(item.doc_id)) == 1:
+                id_list.append("0" + str(item.doc_id))
+            else:
+                id_list.append(str(item.doc_id))
             players.append(item)
+
         return players, id_list
 
     def update_player_db(self):
         pass
 
-    @staticmethod
-    def save_player_db(player):
+    def save_player_db(self):
         players_db = TinyDB('database/players.json')
-        players_db.insert(player)
+        players_db.insert(self.serialize_player())
 
     @staticmethod
     def sort_players_name(players):

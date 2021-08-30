@@ -4,7 +4,7 @@ from chess_tournaments.views.menu import MenuViews
 
 def main():
     MenuViews.app_title()
-    MenuController.main_menu_start()
+    MenuController().main_menu_start()
 
 
 if __name__ == "__main__":

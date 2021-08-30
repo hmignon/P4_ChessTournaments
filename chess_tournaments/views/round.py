@@ -1,7 +1,55 @@
+from prettytable import PrettyTable
+
+
 class RoundViews:
 
     def __init__(self):
-        pass
+        self.table = PrettyTable()
+
+        self.match_field_names = [
+            "ID P1",
+            "Name P1",
+            "Rank P1",
+            "Score P1",
+            " ",
+            "ID P2",
+            "Name P2",
+            "Rank P2",
+            "Score P2"
+        ]
+
+        self.results_field_names = [
+            "Tournament ranking",
+            "Name",
+            "Final Score",
+            "Global ranking"
+        ]
+
+    def display_matches(self, matches):
+        self.table.clear()
+        self.table.field_names = self.match_field_names
+
+        i = -4
+        while i != 0:
+            self.table.add_row(matches[i])
+            i += 1
+
+        print(self.table)
+
+    def display_results(self, players):
+        print("\n\n- FINAL SCORES -\n")
+        self.table.field_names = self.results_field_names
+        self.table.clear_rows()
+
+        for i in range(len(players)):
+            self.table.add_row([
+                i+1,
+                players[i]["last_name"] + ", " + players[i]["first_name"],
+                players[i]["score"],
+                players[i]["rank"]
+            ])
+
+        print(self.table)
 
     @staticmethod
     def round_header(current_round, info):
@@ -11,11 +59,7 @@ class RoundViews:
         print(f"End date : {info['end_date']}", end=' | ')
         print(f"Time control : {info['time_control']}")
 
-        print(f"\n- ROUND {current_round}/{info['total_rounds']} - ")
-
-    @staticmethod
-    def display_matches(table):
-        print(table)
+        print(f"\n- ROUND {current_round}/{info['rounds_total']} - ")
 
     @staticmethod
     def round_over():
@@ -30,11 +74,4 @@ class RoundViews:
 
     @staticmethod
     def score_input_prompt():
-        print('\nWho won ?', end=' ')
-
-    @staticmethod
-    def display_results(players):
-        print("\n\n- FINAL SCORES -\n")
-        for i in range(len(players)):
-            print(players[i]['last_name'], "=", end=' ')
-            print(str(players[i]['score']) + " pts")
+        print('\nEnter result :', end=' ')
