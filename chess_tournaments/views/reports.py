@@ -4,12 +4,13 @@ from prettytable import PrettyTable
 class Reports:
 
     def __init__(self):
+
         self.table = PrettyTable()
 
         self.player_report_field_names = [
             "ID",
-            "Last Name",
-            "First Name",
+            "Last name",
+            "First name",
             "Gender",
             "Date of birth",
             "Rank"
@@ -20,28 +21,32 @@ class Reports:
             "Name",
             "Location",
             "Description",
-            "Start Date",
-            "End Date",
-            "Time Control",
-            "Rounds",
-            "Players (ID / Name)",
-            "Matches"
+            "Start date",
+            "End date",
+            "Time control",
+            "Current round",
+            "Players (ID | Name)",
         ]
 
         self.matches_report_field_names = [
-            "ID P1",
             "Name P1",
             "Rank P1",
             "Score P1",
             " ",
-            "ID P2",
             "Name P2",
             "Rank P2",
             "Score P2"
         ]
 
+        self.rounds_report_field_names = [
+            "Round #",
+            "Started at",
+            "Ended at",
+            "Matches"
+        ]
+
     def display_players(self, players):
-        print("\n- All players -\n")
+        """Display player report (all sorting types)"""
         self.table.clear()
         self.table.field_names = self.player_report_field_names
         self.table.align = "l"
@@ -56,10 +61,11 @@ class Reports:
                 players[i]["rank"]
             ])
 
+        print("\n- All players -\n")
         print(self.table)
 
-    def display_tournaments(self, tournaments):
-        print("\n- All tournaments -")
+    def display_tournaments_report(self, tournaments):
+        """Display tournament reports"""
         self.table.clear()
         self.table.field_names = self.tournament_report_field_names
         self.table.align = "l"
@@ -81,18 +87,52 @@ class Reports:
                 tournaments[i]["end_date"],
                 tournaments[i]["time_control"],
                 str(tournaments[i]["current_round"]) + "/" + str(tournaments[i]["rounds_total"]),
-                participants,
-                tournaments[i]["matches"]
+                participants
             ])
 
+        print("\n- All tournaments -")
         print(self.table)
 
-    def display_matches(self, matches):
-        print("\n- Matches -")
+    def display_matches_report(self, matches):
+        """Display matches in tournament report"""
         self.table.clear()
         self.table.field_names = self.matches_report_field_names
+        self.table.align = "l"
 
         for i in range(len(matches)):
+            matches[i].insert(3, "vs.")
             self.table.add_row(matches[i])
 
+        print(f"\n- All played matches ({len(matches)} total) -")
         print(self.table)
+
+    def display_rounds_report(self, rounds):
+        """Display rounds in tournament report"""
+        self.table.clear()
+        self.table.field_names = self.rounds_report_field_names
+        self.table.align = "l"
+
+        for i in range(len(rounds)):
+            self.table.add_row([
+                rounds[i][0],
+                rounds[i][1],
+                rounds[i][2],
+                rounds[i][3]
+            ])
+
+        print("\n- All played rounds -")
+        print(self.table)
+
+    @staticmethod
+    def report_header(info):
+        print("\n\n")
+
+        h_1 = f"{info['name'].upper()}, {info['location'].title()} | Description : {info['description']}"
+        h_2 = \
+            f"Start date : {info['start_date']} | " \
+            f"End date : {info['end_date']} | " \
+            f"Time control : {info['time_control']} | " \
+            f"Rounds played : {info['current_round']}/{info['rounds_total']}"
+
+        print(h_1)
+        print(h_2)

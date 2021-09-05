@@ -1,10 +1,8 @@
-from tinydb import TinyDB
-
-
 class Tournament:
 
     def __init__(
             self,
+            t_id: int,
             name: str,
             location: str,
             start_date: str,
@@ -13,8 +11,10 @@ class Tournament:
             time_control: str,
             current_round: int,
             players: list,
+            rounds: list,
             rounds_total=4
     ):
+        self.t_id = t_id
         self.name = name
         self.location = location
         self.start_date = start_date
@@ -24,10 +24,12 @@ class Tournament:
         self.current_round = current_round
         self.rounds_total = rounds_total
         self.players = players
-        self.matches = []
+        self.rounds = rounds
 
     def serialize_tournament(self):
+        """Return serialized tournament info"""
         return {
+            "id": self.t_id,
             "name": self.name,
             "location": self.location,
             "start_date": self.start_date,
@@ -37,28 +39,17 @@ class Tournament:
             "current_round": self.current_round,
             "rounds_total": self.rounds_total,
             "players": self.players,
-            "matches": self.matches
+            "rounds": self.rounds,
         }
 
-    @staticmethod
-    def load_tournament_db():
-        db = TinyDB("database/tournaments.json")
-        db.all()
-        id_list = []
-        tournaments_list = []
-        for item in db:
-            id_list.append(item.doc_id)
-            tournaments_list.append(item)
+    def sort_players_by_rank(self):
+        self.players = sorted(self.players, key=lambda x: x.get('rank'))
+        return self.players
 
-        return tournaments_list, id_list
+    def sort_players_by_score(self):
+        self.players = sorted(self.players, key=lambda x: x.get('score'), reverse=True)
+        return self.players
 
-    def save_tournament_db(self):
-        db = TinyDB('database/tournaments.json')
-        db.insert(self.serialize_tournament())
-
-    @staticmethod
-    def update_tournament_db(id_num: int, matches: list, players: list, round_num: int):
-        db = TinyDB('database/tournaments.json')
-        db.update({'matches': matches}, doc_ids=[id_num])
-        db.update({'players': players}, doc_ids=[id_num])
-        db.update({'current_round': round_num}, doc_ids=[id_num])
+    def split_players(self):
+        half = len(self.players) // 2
+        return self.players[:half], self.players[half:]

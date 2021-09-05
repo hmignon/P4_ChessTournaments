@@ -6,13 +6,12 @@ class RoundViews:
     def __init__(self):
         self.table = PrettyTable()
 
-        self.match_field_names = [
-            "ID P1",
+        self.round_field_names = [
+            "Match #",
             "Name P1",
             "Rank P1",
             "Score P1",
             " ",
-            "ID P2",
             "Name P2",
             "Rank P2",
             "Score P2"
@@ -26,20 +25,32 @@ class RoundViews:
         ]
 
     def display_matches(self, matches):
-        self.table.clear()
-        self.table.field_names = self.match_field_names
+        """Display matches for current round as table
 
-        i = -4
-        while i != 0:
-            self.table.add_row(matches[i])
-            i += 1
+        @param matches: list of matches tuples
+        """
+        self.table.clear()
+        self.table.field_names = self.round_field_names
+
+        for i in range(len(matches)):
+            row = list(matches[i])
+            row.insert(0, str(i+1))
+            row.insert(4, "vs.")
+
+            self.table.add_row(row)
 
         print(self.table)
 
-    def display_results(self, players):
+    def display_results(self, players, tournament):
+        """Display results at the end of the tournament
+
+        @param players: list of players dicts
+        @param tournament: tournament dict
+        """
         print("\n\n- FINAL SCORES -\n")
+        print(f"{tournament['name']} | Start : {tournament['start_date']} | End : {tournament['end_date']}\n")
+        self.table.clear()
         self.table.field_names = self.results_field_names
-        self.table.clear_rows()
 
         for i in range(len(players)):
             self.table.add_row([
@@ -52,14 +63,22 @@ class RoundViews:
         print(self.table)
 
     @staticmethod
-    def round_header(current_round, info):
-        print(f"\n\n{info['name'].upper()}, {info['location'].title()}", end=' | ')
-        print(f"Description : {info['description']}")
-        print(f"Start date : {info['start_date']}", end=' | ')
-        print(f"End date : {info['end_date']}", end=' | ')
-        print(f"Time control : {info['time_control']}")
+    def round_header(current_round, info, start_time):
+        """Display tournament info as a round header
 
-        print(f"\n- ROUND {current_round}/{info['rounds_total']} - ")
+        @param current_round: current round number (int)
+        @param info: tournament info (dict)
+        @param start_time: tournament start time (str)
+        """
+        print("\n\n")
+
+        h_1 = f"{info['name'].upper()}, {info['location'].title()} | Description : {info['description']}"
+        h_2 = f"Start date and time : {info['start_date']} | Time control : {info['time_control']}\n"
+        h_3 = f"- ROUND {current_round}/{info['rounds_total']} | {start_time} -"
+
+        print(h_1.center(100, " "))
+        print(h_2.center(100, " "))
+        print(h_3.center(100, " "))
 
     @staticmethod
     def round_over():

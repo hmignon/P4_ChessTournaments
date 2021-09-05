@@ -11,7 +11,7 @@ class MenuViews:
 
     @staticmethod
     def main_menu():
-        print("\n" * 3 + "- MAIN MENU -\n")
+        print("\n\n=== MAIN MENU ===\n")
         print("[1] Create new tournament")
         print("[2] Resume tournament")
         print("[3] Create new player")
@@ -20,8 +20,8 @@ class MenuViews:
         print("\n[exit] Exit program")
 
     @staticmethod
-    def create_tournament():
-        print("\n" * 3 + "- NEW TOURNAMENT -\n")
+    def create_tournament_header():
+        print("\n" * 3 + "--- NEW TOURNAMENT ---")
 
     @staticmethod
     def time_control_options():
@@ -32,14 +32,17 @@ class MenuViews:
 
     @staticmethod
     def review_tournament(info, players):
-        print("\n\n- New tournament created -\n")
+        """Display all input info to review before saving to database
+
+        @param info: input info list
+        @param players: list of selected players
+        """
+        print("\n\nNew tournament created :\n")
         print(f"{info[0].upper()}, {info[1].title()}", end=' | ')
-        print(f"Description : {info[4]}", end=' | ')
-        print(f"Start date : {info[2]}", end=' | ')
-        print(f"End date : {info[3]}", end=' | ')
-        print(f"Rounds : {info[6]}", end=' | ')
-        print(f"Time control : {info[7]}")
-        print(f"\nPlayers ({info[5]} total) :\n")
+        print(f"Description : {info[2]}", end=' | ')
+        print(f"Rounds : {info[4]}", end=' | ')
+        print(f"Time control : {info[5]}")
+        print(f"\nPlayers ({info[3]} total) :\n")
 
         for item in players:
             print(f"Player {players.index(item) + 1} : ", end='')
@@ -51,35 +54,56 @@ class MenuViews:
         print("\nSave to database ? [y/n] ", end='')
 
     @staticmethod
+    def tournament_saved():
+        print("\nTournament successfully saved to database !")
+
+    @staticmethod
+    def start_tournament_prompt():
+        print("\nStart tournament now ? [y/n] ", end='')
+
+    @staticmethod
     def select_players(players, player_number):
-        print(f"\nSelect Player {player_number} :")
+        """Display all players to select
+
+        @param players: list of players
+        @param player_number: number of current player (for new tournament, if editing player == "")
+        """
+        print(f"\nSelect player {player_number} :\n")
         for i in range(len(players)):
             print(f"[{players[i]['id']}]", end=' ')
             print(f"{players[i]['last_name']}, {players[i]['first_name']}", end=" | ")
-            print(f"{players[i]['date_of_birth']}", end=" | ")
+            print(f"{players[i]['gender']} | {players[i]['date_of_birth']}", end=" | ")
             print(f"Rank : {players[i]['rank']}")
 
     @staticmethod
-    def select_tournament(info, id_list):
-        print("\n" * 3 + "- SELECT TOURNAMENT -\n")
+    def select_tournament(tournaments):
+        """Display all tournaments to select
 
-        for i in range(len(info)):
-            print(f"[{id_list[i]}]", end=' ')
-            print(info[i]['name'], end=' | ')
-            print(info[i]['location'], end=" | ")
-            print(info[i]['description'], end=' | ')
-            print(f"Started on : {info[i]['start_date']}", end=' | ')
-            print(f"Round {info[i]['current_round']}/{info[i]['rounds_total']}")
+        @param tournaments: tournaments list
+        """
+        print("\n" * 3 + "--- SELECT TOURNAMENT ---\n")
+
+        for i in range(len(tournaments)):
+            print(f"[{tournaments[i]['id']}]", end=' ')
+            print(tournaments[i]['name'], end=' | ')
+            print(tournaments[i]['location'], end=" | ")
+            print(tournaments[i]['description'], end=' | ')
+            print(f"Started on : {tournaments[i]['start_date']}", end=' | ')
+            print(f"Round {tournaments[i]['current_round']}/{tournaments[i]['rounds_total']}")
 
         print("\n[back] Back to main menu")
 
     @staticmethod
-    def create_new_player():
+    def create_new_player_header():
         print("\n" * 3 + "- NEW PLAYER -\n")
 
     @staticmethod
     def review_player(info):
-        print("\n\n- New player created -\n")
+        """Display all input info to review before saving to database
+
+        @param info: player info list
+        """
+        print("\n\nNew player created :\n")
         print(f"{info[0]}, {info[1]}", end=' | ')
         print(f"Date of birth : {info[2]}", end=' | ')
         print(f"Gender : {info[3]}", end=' | ')
@@ -87,19 +111,35 @@ class MenuViews:
         print("\nSave to database ? [y/n] ", end='')
 
     @staticmethod
+    def update_player_info(player, options):
+        """Player info editing prompts
+
+        @param player: currently edited player info (dict)
+        @param options: editable options
+        """
+        print("\n\n--- UPDATE PLAYER INFO ---\n")
+        print(f"Updating {player['last_name']}, {player['first_name']}\n")
+        for i in range(len(options)):
+            print(f"[{i+1}] Update {options[i]}")
+
+    @staticmethod
     def player_saved():
-        print("\nPlayer successfully saved to database !")
+        print("\nPlayer successfully saved to database ✓")
 
     @staticmethod
     def reports_menu():
-        print("\n" * 3 + "- REPORTS -\n")
-        print("[1] All players (by name)")
-        print("[2] All players (by rank)")
-        print("[3] Players in a tournament")
-        print("[4] All tournaments")
-        print("[5] Rounds in a tournament")
-        print("[6] Matches in a tournament")
+        print("\n" * 3 + "--- REPORTS ---\n")
+        print("[1] All players")
+        print("[2] Players in a tournament")
+        print("[3] All tournaments")
+        print("[4] Rounds in a tournament")
+        print("[5] Matches in a tournament")
         print("\n[back] Back to main menu")
+
+    @staticmethod
+    def reports_player_sorting():
+        print("\n[1] Sort by name")
+        print("[2] Sort by rank")
 
     @staticmethod
     def input_prompt_text(option):
@@ -111,7 +151,7 @@ class MenuViews:
 
     @staticmethod
     def back_to_main_menu():
-        print("\nBack to main menu ? [y/n] ", end='')
+        print("\nBack to main menu ? [back]\n")
 
     @staticmethod
     def are_you_sure_exit():
@@ -124,3 +164,11 @@ class MenuViews:
     @staticmethod
     def player_already_selected():
         print("\nPlayer already selected. Please select other player.")
+
+    @staticmethod
+    def other_report():
+        print("\nWould you like to view another report ? [y/n] ", end='')
+
+    @staticmethod
+    def update_rank():
+        print("Update ranks ? [y/n] ", end='')

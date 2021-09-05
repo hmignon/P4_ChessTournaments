@@ -1,7 +1,7 @@
 ![chess_club](img/chess_club.png)
 
 # Projet 4 DA-Python OC (Hélène Mignon)
-**Livrable du Projet 4 du parcours D-A Python d'OpenClassrooms.**
+***Livrable du Projet 4 du parcours D-A Python d'OpenClassrooms : application de gestion de tournoi d'échecs avec base de données.***
 
 _Testé sous Windows 10 - Python version 3.9.5_
 
@@ -14,6 +14,7 @@ _Testé sous Windows 10 - Python version 3.9.5_
     3. [Générer un rapport flake8](#id-section1-3)
 2. [Options des menus](#id-section2)
     1. [Menu principal](#section2-1)
+    2. [Rapports](#section2-2)
 
 
 <div id='id-section1'></div>
@@ -85,7 +86,20 @@ _Dernier rapport exporté :_
 
 #### i. Menu Principal
 1. Créer un nouveau tournoi
-2. Reprendre tournoi
-3. Créer un joueur
-4. Modifier un joueur
+2. Reprendre tournoi existant
+3. Créer un nouveau joueur
+4. Modifier un joueur existant
 5. Rapports
+
+<div id='id-section2-2'></div>
+
+#### ii. Rapports
+1. Tous les joueurs
+   1. Classer par nom
+   2. Classer par rang
+2. Tous les joueurs d'un tournoi
+   1. Classer par nom
+   2. Classer par rang
+3. Tous les tournois
+4. Toutes les rondes d'un tournoi
+5. Tous les matchs d'un tournoi
