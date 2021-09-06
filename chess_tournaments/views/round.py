@@ -80,7 +80,8 @@ class RoundViews:
 
     @staticmethod
     def round_over():
-        print("\nRound over ? [ok]", end=' ')
+        print("\nRound over ? [ok]")
+        print("Back to main menu ? [back]")
 
     @staticmethod
     def score_options(match_number):

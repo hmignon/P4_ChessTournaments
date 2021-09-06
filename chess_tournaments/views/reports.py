@@ -24,7 +24,7 @@ class Reports:
             "Start date",
             "End date",
             "Time control",
-            "Current round",
+            "Last round played",
             "Players (ID | Name)",
         ]
 
@@ -86,7 +86,7 @@ class Reports:
                 tournaments[i]["start_date"],
                 tournaments[i]["end_date"],
                 tournaments[i]["time_control"],
-                str(tournaments[i]["current_round"]) + "/" + str(tournaments[i]["rounds_total"]),
+                str(tournaments[i]["current_round"]-1) + "/" + str(tournaments[i]["rounds_total"]),
                 participants
             ])
 
@@ -132,7 +132,7 @@ class Reports:
             f"Start date : {info['start_date']} | " \
             f"End date : {info['end_date']} | " \
             f"Time control : {info['time_control']} | " \
-            f"Rounds played : {info['current_round']}/{info['rounds_total']}"
+            f"Rounds played : {info['current_round']-1}/{info['rounds_total']}"
 
         print(h_1)
         print(h_2)

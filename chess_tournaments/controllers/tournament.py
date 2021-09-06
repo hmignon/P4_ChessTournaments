@@ -32,16 +32,18 @@ class TournamentController:
                 t.current_round += 1
                 t.update_tournament_db()
 
-        elif t.current_round > 1:
+        elif 1 < t.current_round <= t.rounds_total:
             while t.current_round <= t.rounds_total:
                 self.next_rounds(t)
                 t.current_round += 1
                 t.update_tournament_db()
 
-        t.end_date = self.timer
-        t.update_timer(t.end_date, 'end_date')
+            t.end_date = self.timer
+            t.update_timer(t.end_date, 'end_date')
+            self.tournament_end(t)
 
-        self.tournament_end(t)
+        elif t.current_round > t.rounds_total:
+            self.tournament_end(t)
 
     def first_round(self, t):
         """First round : top players vs. bottom players
@@ -58,6 +60,7 @@ class TournamentController:
         self.round_view.display_matches(r.matches)
 
         self.round_view.round_over()
+        self.menu_view.input_prompt()
         user_input = input().lower()
         scores_list = []
 
@@ -67,6 +70,9 @@ class TournamentController:
 
             t.players = top_players + bottom_players
             self.end_of_round(scores_list, t)
+
+        elif user_input == "back":
+            self.back_to_menu()
 
     def next_rounds(self, t):
         """Next rounds : set possible pairings
@@ -101,6 +107,7 @@ class TournamentController:
         self.round_view.display_matches(r.matches)
 
         self.round_view.round_over()
+        self.menu_view.input_prompt()
         user_input = input().lower()
         scores_list = []
 
@@ -108,6 +115,9 @@ class TournamentController:
             r.end_datetime = self.timer
             t.rounds.append(r.set_round())
             self.end_of_round(scores_list, t)
+
+        elif user_input == "back":
+            self.back_to_menu()
 
     def match_first_option(self, available_list, players_added, r):
         """Main pairing option
@@ -240,34 +250,49 @@ class TournamentController:
         self.menu_view.update_rank()
         user_input = input()
 
+        players = t.players
+
         if user_input == "y":
-            for i in range(len(t.players)):
-                self.update_ranks(t.players)
+            for i in range(len(players)):
+                players = self.update_ranks(players)
 
         elif user_input == "n":
-            pass
+            self.back_to_menu()
 
     def update_ranks(self, players):
         """Update player ranks and save to DB
 
-        @param players: list of players
+        @param players: tournament player list
         """
-        self.menu_view.select_players(players, "")
+        self.menu_view.select_players(players, "to update")
         self.menu_view.input_prompt()
         user_input = input()
 
-        p = players[int(user_input) - 1]
-        p = Player(
-            p['id'],
-            p['last_name'],
-            p['first_name'],
-            p['date_of_birth'],
-            p['gender'],
-            p['rank']
-        )
+        if user_input == "back":
+            self.back_to_menu()
 
-        self.menu_view.update_player_info(p, ['rank'])
-        self.menu_view.input_prompt()
-        user_input = int(input())
+        for i in range(len(players)):
+            if int(user_input) == players[i]["id"]:
+                p = players[players.index(players[i])]
+                p = Player(
+                    p['id'],
+                    p['last_name'],
+                    p['first_name'],
+                    p['date_of_birth'],
+                    p['gender'],
+                    p['rank']
+                )
 
-        p.update_player_db(user_input, "rank")
+                self.menu_view.rank_update_header(p)
+                self.menu_view.input_prompt_text("new rank")
+                user_input = input()
+
+                p.update_player_db(int(user_input), "rank")
+                players[i]["rank"] = int(user_input)
+
+                return players
+
+    @staticmethod
+    def back_to_menu():
+        from chess_tournaments.controllers.menu import MenuController
+        MenuController().main_menu_start()

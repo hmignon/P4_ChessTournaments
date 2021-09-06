@@ -77,4 +77,13 @@ class ReportsController:
         self.menu_view.input_prompt()
         user_input = input()
 
-        return user_input, tournaments
+        if user_input == "back":
+            self.back_to_menu()
+
+        else:
+            return user_input, tournaments
+
+    @staticmethod
+    def back_to_menu():
+        from chess_tournaments.controllers.menu import MenuController
+        MenuController().main_menu_start()

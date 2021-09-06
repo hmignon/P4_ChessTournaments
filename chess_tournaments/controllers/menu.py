@@ -136,14 +136,17 @@ class MenuController:
         while i < players_total:
             self.menu_view.select_players(players, i+1)
             self.menu_view.input_prompt()
-            user_input = int(input())
+            user_input = input()
 
             if user_input in id_list:
-                index = id_list.index(user_input)
+                index = id_list.index(int(user_input))
                 tour_players.append(players[index])
                 id_list.remove(id_list[index])
                 players.remove(players[index])
                 i += 1
+
+            elif user_input == "back":
+                self.main_menu_start()
 
             else:
                 self.menu_view.player_already_selected()
@@ -178,12 +181,6 @@ class MenuController:
                     t["rounds_total"]
                 )
                 self.tour_cont.start_tournament(t)
-
-        self.menu_view.back_to_main_menu()
-        user_input = input()
-
-        if user_input == "back":
-            self.main_menu_start()
 
     def new_player(self):
         """Create new player, serialize and save to DB"""
@@ -225,8 +222,7 @@ class MenuController:
         """Update existing player info"""
         players = self.db.load_player_db()
 
-        self.menu_view.select_players(players, "")
-        self.menu_view.back_to_main_menu()
+        self.menu_view.select_players(players, "to update")
         self.menu_view.input_prompt()
         user_input = input()
 
@@ -251,14 +247,13 @@ class MenuController:
             "rank"
         ]
         self.menu_view.update_player_info(p, options)
-        self.menu_view.back_to_main_menu()
         self.menu_view.input_prompt()
-        user_input = int(input())
+        user_input = input()
 
-        if user_input <= len(options):
-            updated_info = (options[user_input - 1]).replace(" ", "_")
+        if int(user_input) <= len(options):
+            updated_info = (options[int(user_input) - 1]).replace(" ", "_")
             self.menu_view.input_prompt_text(
-                f"new {options[user_input - 1]}")
+                f"new {options[int(user_input) - 1]}")
             user_input = input()
 
             p.update_player_db(user_input, updated_info)
@@ -318,3 +313,6 @@ class MenuController:
 
         elif user_input == "2":
             self.reports_cont.all_players_rank(players)
+
+        elif user_input == "back":
+            self.main_menu_start()

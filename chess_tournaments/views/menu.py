@@ -75,6 +75,8 @@ class MenuViews:
             print(f"{players[i]['gender']} | {players[i]['date_of_birth']}", end=" | ")
             print(f"Rank : {players[i]['rank']}")
 
+        print("\n[back] Back to main menu")
+
     @staticmethod
     def select_tournament(tournaments):
         """Display all tournaments to select
@@ -89,7 +91,8 @@ class MenuViews:
             print(tournaments[i]['location'], end=" | ")
             print(tournaments[i]['description'], end=' | ')
             print(f"Started on : {tournaments[i]['start_date']}", end=' | ')
-            print(f"Round {tournaments[i]['current_round']}/{tournaments[i]['rounds_total']}")
+            print(f"Ended on : {tournaments[i]['end_date']}", end=' | ')
+            print(f"Round {tournaments[i]['current_round']-1}/{tournaments[i]['rounds_total']}")
 
         print("\n[back] Back to main menu")
 
@@ -140,6 +143,7 @@ class MenuViews:
     def reports_player_sorting():
         print("\n[1] Sort by name")
         print("[2] Sort by rank")
+        print("\n[back] Back to main menu")
 
     @staticmethod
     def input_prompt_text(option):
@@ -147,15 +151,11 @@ class MenuViews:
 
     @staticmethod
     def input_prompt():
-        print("\nType number option and press Enter : ", end='')
-
-    @staticmethod
-    def back_to_main_menu():
-        print("\nBack to main menu ? [back]\n")
+        print("\nType [option] and press Enter : ", end='')
 
     @staticmethod
     def are_you_sure_exit():
-        print("Are you sure you want to exit the program ? [y/n] ", end='')
+        print("\nAre you sure you want to exit the program ? [y/n] ", end='')
 
     @staticmethod
     def input_error():
@@ -171,4 +171,8 @@ class MenuViews:
 
     @staticmethod
     def update_rank():
-        print("Update ranks ? [y/n] ", end='')
+        print("\nUpdate ranks ? [y/n] ", end='')
+
+    @staticmethod
+    def rank_update_header(p):
+        print(f"\nUpdating {p.last_name}, {p.first_name}")
