@@ -1,3 +1,6 @@
+from tinydb import TinyDB
+
+
 class Player:
 
     def __init__(
@@ -18,6 +21,8 @@ class Player:
         self.score = 0.0
         self.opponents = []
 
+        self.player_db = TinyDB('database/players.json')
+
     def serialize_player(self):
         """Return serialized player info"""
         return {
@@ -30,3 +35,23 @@ class Player:
             "score": self.score,
             "opponents": self.opponents
         }
+
+    def save_player_db(self):
+        """Save new player to database
+        Set player ID as document ID
+        """
+        players_db = self.player_db
+        self.p_id = players_db.insert(self.serialize_player())
+        players_db.update({'id': self.p_id}, doc_ids=[self.p_id])
+
+    def update_player_db(self, info, option):
+        """Update player info (from user input) in database
+
+        @param info: user input (str, or int inf "rank")
+        @param option: update info category
+        """
+        db = self.player_db
+        if option == "rank":
+            db.update({option: int(info)}, doc_ids=[self.p_id])
+        else:
+            db.update({option: info}, doc_ids=[self.p_id])

@@ -85,7 +85,7 @@ class MenuController:
                 current_round=1,
                 rounds=[]
             )
-            self.db.save_tournament_db(tournament)
+            tournament.save_tournament_db()
             self.menu_view.tournament_saved()
 
             self.menu_view.start_tournament_prompt()
@@ -214,7 +214,7 @@ class MenuController:
                 rank=int(player_info[4])
             )
 
-            self.db.save_player_db(player)
+            player.save_player_db()
             self.menu_view.player_saved()
             self.main_menu_start()
 
@@ -233,7 +233,15 @@ class MenuController:
         if user_input == "back":
             self.main_menu_start()
 
-        player = players[int(user_input) - 1]
+        p = players[int(user_input) - 1]
+        p = Player(
+            p['id'],
+            p['last_name'],
+            p['first_name'],
+            p['date_of_birth'],
+            p['gender'],
+            p['rank']
+        )
 
         options = [
             "last name",
@@ -242,7 +250,7 @@ class MenuController:
             "gender",
             "rank"
         ]
-        self.menu_view.update_player_info(player, options)
+        self.menu_view.update_player_info(p, options)
         self.menu_view.back_to_main_menu()
         self.menu_view.input_prompt()
         user_input = int(input())
@@ -250,10 +258,10 @@ class MenuController:
         if user_input <= len(options):
             updated_info = (options[user_input - 1]).replace(" ", "_")
             self.menu_view.input_prompt_text(
-                f"new {options[user_input - 1]} (previous : {player[updated_info]})")
+                f"new {options[user_input - 1]}")
             user_input = input()
 
-            self.db.update_player_db(player, user_input, updated_info)
+            p.update_player_db(user_input, updated_info)
             self.menu_view.player_saved()
 
             self.update_player()

@@ -41,40 +41,38 @@ class RoundViews:
 
         print(self.table)
 
-    def display_results(self, players, tournament):
+    def display_results(self, t):
         """Display results at the end of the tournament
 
-        @param players: list of players dicts
-        @param tournament: tournament dict
+        @param t: current tournament
         """
         print("\n\n- FINAL SCORES -\n")
-        print(f"{tournament['name']} | Start : {tournament['start_date']} | End : {tournament['end_date']}\n")
+        print(f"{t.name} | Start : {t.start_date} | End : {t.end_date}\n")
         self.table.clear()
         self.table.field_names = self.results_field_names
 
-        for i in range(len(players)):
+        for i in range(len(t.players)):
             self.table.add_row([
                 i+1,
-                players[i]["last_name"] + ", " + players[i]["first_name"],
-                players[i]["score"],
-                players[i]["rank"]
+                t.players[i]["last_name"] + ", " + t.players[i]["first_name"],
+                t.players[i]["score"],
+                t.players[i]["rank"]
             ])
 
         print(self.table)
 
     @staticmethod
-    def round_header(current_round, info, start_time):
+    def round_header(t, start_time):
         """Display tournament info as a round header
 
-        @param current_round: current round number (int)
-        @param info: tournament info (dict)
+        @param t: current tournament
         @param start_time: tournament start time (str)
         """
         print("\n\n")
 
-        h_1 = f"{info['name'].upper()}, {info['location'].title()} | Description : {info['description']}"
-        h_2 = f"Start date and time : {info['start_date']} | Time control : {info['time_control']}\n"
-        h_3 = f"- ROUND {current_round}/{info['rounds_total']} | {start_time} -"
+        h_1 = f"{t.name.upper()}, {t.location.title()} | Description : {t.description}"
+        h_2 = f"Start date and time : {t.start_date} | Time control : {t.time_control}\n"
+        h_3 = f"- ROUND {t.current_round}/{t.rounds_total} | {start_time} -"
 
         print(h_1.center(100, " "))
         print(h_2.center(100, " "))
