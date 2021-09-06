@@ -82,18 +82,18 @@ class TournamentController:
         while k < t.rounds_total:
             if available_list[1]["id"] in available_list[0]["opponents"]:
                 try:
-                    available_list, players_added, t = \
-                        self.match_other_option(available_list, players_added, t, r)
+                    available_list, players_added = \
+                        self.match_other_option(available_list, players_added, r)
                     t.players = players_added
 
                 except IndexError:
-                    available_list, players_added, t = \
-                        self.match_first_option(available_list, players_added, t, r)
+                    available_list, players_added = \
+                        self.match_first_option(available_list, players_added, r)
                     t.players = players_added
 
             elif available_list[1]["id"] not in available_list[0]["opponents"]:
-                available_list, players_added, t = \
-                    self.match_first_option(available_list, players_added, t, r)
+                available_list, players_added = \
+                    self.match_first_option(available_list, players_added, r)
                 t.players = players_added
 
             k += 1
@@ -109,14 +109,13 @@ class TournamentController:
             t.rounds.append(r.set_round())
             self.end_of_round(scores_list, t)
 
-    def match_first_option(self, available_list, players_added, t, r):
+    def match_first_option(self, available_list, players_added, r):
         """Main pairing option
 
         @param available_list: list of players not set in match for current round
         @param players_added: list of players already in match for current round
-        @param t: current tournament
         @param r: current round
-        @return: updated lists and tournament
+        @return: updated lists
         """
         r.get_match_pairing(available_list[0], available_list[1])
         available_list[0], available_list[1] = self.update_opponents(available_list[0], available_list[1])
@@ -128,16 +127,15 @@ class TournamentController:
             players_added
         )
 
-        return available_list, players_added, t
+        return available_list, players_added
 
-    def match_other_option(self, available_list, players_added, t, r):
+    def match_other_option(self, available_list, players_added, r):
         """Alternative pairing option
 
         @param available_list: list of players not set in match for current round
         @param players_added: list of players already in match for current round
-        @param t: current tournament
         @param r: current round
-        @return: updated lists and tournament
+        @return: updated lists
         """
         r.get_match_pairing(available_list[0], available_list[2])
         available_list[0], available_list[2] = self.update_opponents(available_list[0], available_list[2])
@@ -149,7 +147,7 @@ class TournamentController:
             players_added
         )
 
-        return available_list, players_added, t
+        return available_list, players_added
 
     def end_of_round(self, scores_list, t):
         """End of round : update player scores
@@ -268,7 +266,7 @@ class TournamentController:
             p['rank']
         )
 
-        self.menu_view.update_player_info(p.serialize_player(), ['rank'])
+        self.menu_view.update_player_info(p, ['rank'])
         self.menu_view.input_prompt()
         user_input = int(input())
 

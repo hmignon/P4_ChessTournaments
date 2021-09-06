@@ -111,14 +111,14 @@ class MenuViews:
         print("\nSave to database ? [y/n] ", end='')
 
     @staticmethod
-    def update_player_info(player, options):
+    def update_player_info(p, options):
         """Player info editing prompts
 
-        @param player: currently edited player info (dict)
+        @param p: currently edited player
         @param options: editable options
         """
         print("\n\n--- UPDATE PLAYER INFO ---\n")
-        print(f"Updating {player['last_name']}, {player['first_name']}\n")
+        print(f"Updating {p.last_name}, {p.first_name}\n")
         for i in range(len(options)):
             print(f"[{i+1}] Update {options[i]}")
 
