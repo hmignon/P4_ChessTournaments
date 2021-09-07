@@ -144,15 +144,15 @@ class MenuController:
             self.menu_view.input_prompt()
             user_input = input()
 
-            if user_input in id_list:
+            if user_input == "back":
+                self.main_menu_start()
+
+            elif int(user_input) in id_list:
                 index = id_list.index(int(user_input))
                 tour_players.append(players[index])
                 id_list.remove(id_list[index])
                 players.remove(players[index])
                 i += 1
-
-            elif user_input == "back":
-                self.main_menu_start()
 
             else:
                 self.menu_view.player_already_selected()

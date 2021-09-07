@@ -46,8 +46,6 @@ class RoundViews:
 
         @param t: current tournament
         """
-        print("\n\n- FINAL SCORES -\n")
-        print(f"{t.name} | Start : {t.start_date} | End : {t.end_date}\n")
         self.table.clear()
         self.table.field_names = self.results_field_names
 
@@ -58,6 +56,10 @@ class RoundViews:
                 t.players[i]["score"],
                 t.players[i]["rank"]
             ])
+
+        print("\n\n- FINAL SCORES -\n")
+        print(f"{t.name.upper()}, {t.location.title()} | Description : {t.description}")
+        print(f"Start : {t.start_date} | End : {t.end_date} | Time control : {t.time_control}\n")
 
         print(self.table)
 
