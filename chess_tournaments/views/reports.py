@@ -61,7 +61,7 @@ class Reports:
                 players[i]["rank"]
             ])
 
-        print("\n- All players -\n")
+        print("\n\n\n- All players -\n")
         print(self.table)
 
     def display_tournaments_report(self, tournaments):
@@ -90,7 +90,7 @@ class Reports:
                 participants
             ])
 
-        print("\n- All tournaments -")
+        print("\n\n\n- All tournaments -")
         print(self.table)
 
     def display_matches_report(self, matches):
@@ -103,7 +103,7 @@ class Reports:
             matches[i].insert(3, "vs.")
             self.table.add_row(matches[i])
 
-        print(f"\n- All played matches ({len(matches)} total) -")
+        print(f"\n\n\n- All played matches ({len(matches)} total) -")
         print(self.table)
 
     def display_rounds_report(self, rounds):
@@ -120,7 +120,7 @@ class Reports:
                 rounds[i][3]
             ])
 
-        print("\n- All played rounds -")
+        print("\n\n\n- All played rounds -")
         print(self.table)
 
     @staticmethod

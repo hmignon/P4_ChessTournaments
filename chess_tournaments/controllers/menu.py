@@ -64,7 +64,12 @@ class MenuController:
         for item in options:
             self.menu_view.input_prompt_text(item)
             user_input = input()
-            tournament_info.append(user_input)
+
+            if user_input == "back":
+                self.main_menu_start()
+
+            else:
+                tournament_info.append(user_input)
 
         tournament_info.append(self.input_time_control())
         tour_players = self.select_players(int(tournament_info[3]))
@@ -106,7 +111,7 @@ class MenuController:
         """
         self.menu_view.time_control_options()
         self.menu_view.input_prompt()
-        user_input = str(input())
+        user_input = input()
 
         if user_input == "1":
             return "Bullet"
@@ -114,7 +119,8 @@ class MenuController:
             return "Blitz"
         elif user_input == "3":
             return "Rapid"
-
+        elif user_input == "back":
+            self.main_menu_start()
         else:
             self.menu_view.input_error()
             self.input_time_control()
@@ -195,8 +201,11 @@ class MenuController:
         ]
         for item in options:
             self.menu_view.input_prompt_text(item)
-            user_input = input().title()
-            player_info.append(user_input)
+            user_input = input()
+            if user_input == "back":
+                self.main_menu_start()
+            else:
+                player_info.append(user_input)
 
         MenuViews.review_player(player_info)
         user_input = input().lower()
@@ -250,16 +259,23 @@ class MenuController:
         self.menu_view.input_prompt()
         user_input = input()
 
-        if int(user_input) <= len(options):
+        if user_input == "back":
+            self.main_menu_start()
+
+        elif int(user_input) <= len(options):
             updated_info = (options[int(user_input) - 1]).replace(" ", "_")
             self.menu_view.input_prompt_text(
                 f"new {options[int(user_input) - 1]}")
             user_input = input()
 
-            p.update_player_db(user_input, updated_info)
-            self.menu_view.player_saved()
+            if user_input == "back":
+                self.main_menu_start()
 
-            self.update_player()
+            else:
+                p.update_player_db(user_input, updated_info)
+                self.menu_view.player_saved()
+
+                self.update_player()
 
         else:
             self.menu_view.input_error()

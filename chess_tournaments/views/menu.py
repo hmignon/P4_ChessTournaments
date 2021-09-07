@@ -29,6 +29,7 @@ class MenuViews:
         print("[1] Bullet")
         print("[2] Blitz")
         print("[3] Rapid")
+        print("\n[back] Back to main menu")
 
     @staticmethod
     def review_tournament(info, players):
@@ -125,6 +126,8 @@ class MenuViews:
         for i in range(len(options)):
             print(f"[{i+1}] Update {options[i]}")
 
+        print("\n[back] Back to main menu")
+
     @staticmethod
     def player_saved():
         print("\nPlayer successfully saved to database ✓")
@@ -147,7 +150,7 @@ class MenuViews:
 
     @staticmethod
     def input_prompt_text(option):
-        print(f"\nEnter {option} : ", end='')
+        print(f"\nEnter {option} (type [back] for main menu) : ", end='')
 
     @staticmethod
     def input_prompt():

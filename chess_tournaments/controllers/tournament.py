@@ -287,10 +287,14 @@ class TournamentController:
                 self.menu_view.input_prompt_text("new rank")
                 user_input = input()
 
-                p.update_player_db(int(user_input), "rank")
-                players[i]["rank"] = int(user_input)
+                if user_input == "back":
+                    self.back_to_menu()
 
-                return players
+                else:
+                    p.update_player_db(int(user_input), "rank")
+                    players[i]["rank"] = int(user_input)
+
+                    return players
 
     @staticmethod
     def back_to_menu():
