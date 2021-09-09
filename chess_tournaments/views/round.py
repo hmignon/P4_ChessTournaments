@@ -91,6 +91,7 @@ class RoundViews:
         print('[0] Draw')
         print('[1] Player 1 wins')
         print('[2] Player 2 wins')
+        print("\n[back] Back to main menu")
 
     @staticmethod
     def score_input_prompt():

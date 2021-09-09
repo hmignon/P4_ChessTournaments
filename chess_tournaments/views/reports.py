@@ -25,7 +25,7 @@ class Reports:
             "End date",
             "Time control",
             "Last round played",
-            "Players (ID | Name)",
+            "Players (ID : Name)",
         ]
 
         self.matches_report_field_names = [
@@ -75,8 +75,7 @@ class Reports:
             players = tournaments[i]["players"]
             for k in range(len(players)):
                 participants.append(
-                    str(players[k]["id"]) + " | " +
-                    players[k]["last_name"] + ", " + players[k]["first_name"])
+                    str(players[k]["id"]) + " : " + players[k]["last_name"])
 
             self.table.add_row([
                 tournaments[i]["id"],
@@ -125,6 +124,10 @@ class Reports:
 
     @staticmethod
     def report_header(info):
+        """Header for tournament reports
+
+        @param info: tournament (dict)
+        """
         print("\n\n")
 
         h_1 = f"{info['name'].upper()}, {info['location'].title()} | Description : {info['description']}"

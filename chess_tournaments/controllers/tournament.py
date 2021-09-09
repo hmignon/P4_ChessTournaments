@@ -67,8 +67,8 @@ class TournamentController:
         if user_input == "ok":
             r.end_datetime = self.timer
             t.rounds.append(r.set_round())
+            t.merge_players(top_players, bottom_players)
 
-            t.players = top_players + bottom_players
             self.end_of_round(scores_list, t)
 
         elif user_input == "back":
@@ -181,6 +181,41 @@ class TournamentController:
         response = input()
         return response
 
+    def get_score(self, response, scores_list: list):
+        """Input scores for each match in current round
+
+        @param response: user input (str)
+        @param scores_list: list of scores
+        @return: updated list of scores
+        """
+        if response == "0":
+            scores_list.extend([0.5, 0.5])
+            return scores_list
+        elif response == "1":
+            scores_list.extend([1.0, 0.0])
+            return scores_list
+        elif response == "2":
+            scores_list.extend([0.0, 1.0])
+            return scores_list
+        elif response == "back":
+            self.back_to_menu()
+        else:
+            self.menu_view.input_error()
+            self.input_scores()
+
+    @staticmethod
+    def update_scores(players, scores_list):
+        """Update player scores
+
+        @param players: list of players
+        @param scores_list: list of scores
+        @return: list of players with updated scores
+        """
+        for i in range(len(players)):
+            players[i]["score"] += scores_list[i]
+
+        return players
+
     @staticmethod
     def update_player_lists(player_1, player_2, available_list, players_added):
         """Update player lists :
@@ -198,36 +233,6 @@ class TournamentController:
         available_list.remove(player_2)
 
         return available_list, players_added
-
-    @staticmethod
-    def get_score(response, scores_list):
-        """Input scores for each match in current round
-
-        @param response: user input (int)
-        @param scores_list: list of scores
-        @return: updated list of scores
-        """
-        if response == "0":
-            scores_list.extend([0.5, 0.5])
-        elif response == "1":
-            scores_list.extend([1.0, 0.0])
-        elif response == "2":
-            scores_list.extend([0.0, 1.0])
-
-        return scores_list
-
-    @staticmethod
-    def update_scores(players, scores_list):
-        """Update player scores
-
-        @param players: list of players
-        @param scores_list: list of scores
-        @return: list of players with updated scores
-        """
-        for i in range(len(players)):
-            players[i]["score"] += scores_list[i]
-
-        return players
 
     @staticmethod
     def update_opponents(player_1, player_2):

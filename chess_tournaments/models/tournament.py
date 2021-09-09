@@ -60,13 +60,26 @@ class Tournament:
         half = len(self.players) // 2
         return self.players[:half], self.players[half:]
 
+    def merge_players(self, top_players, bottom_players):
+        """Merge top and bottom players in order of matches
+
+        @param top_players: top half of players (list)
+        @param bottom_players: bottom half of players (list)
+        """
+        merged_players = []
+        for i in range(len(self.players) // 2):
+            merged_players.append(top_players[i])
+            merged_players.append(bottom_players[i])
+
+        self.players = merged_players
+
     def save_tournament_db(self):
         """Save new tournament to database
         Set tournament ID as document ID
         """
         db = self.tour_db
-        t_id = db.insert(self.serialize_tournament())
-        db.update({'id': t_id}, doc_ids=[t_id])
+        self.t_id = db.insert(self.serialize_tournament())
+        db.update({'id': self.t_id}, doc_ids=[self.t_id])
 
     def update_tournament_db(self):
         """Update tournament info (after each round) in database"""
@@ -83,3 +96,17 @@ class Tournament:
         """
         db = self.tour_db
         db.update({info: timer}, doc_ids=[self.t_id])
+
+    @staticmethod
+    def load_tournament_db():
+        """Load tournament database
+
+        @return: list of tournaments
+        """
+        db = TinyDB('database/tournaments.json')
+        db.all()
+        tournaments_list = []
+        for item in db:
+            tournaments_list.append(item)
+
+        return tournaments_list

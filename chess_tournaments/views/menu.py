@@ -67,7 +67,7 @@ class MenuViews:
         """Display all players to select
 
         @param players: list of players
-        @param player_number: number of current player (for new tournament, if editing player == "")
+        @param player_number: number of current player for new tournament (if editing player == "")
         """
         print(f"\nSelect player {player_number} :\n")
         for i in range(len(players)):
@@ -130,7 +130,7 @@ class MenuViews:
 
     @staticmethod
     def player_saved():
-        print("\nPlayer successfully saved to database ✓")
+        print("\nPlayer successfully saved to database !")
 
     @staticmethod
     def reports_menu():
@@ -177,5 +177,5 @@ class MenuViews:
         print("\nUpdate ranks ? [y/n] ", end='')
 
     @staticmethod
-    def rank_update_header(p):
-        print(f"\nUpdating {p.last_name}, {p.first_name}")
+    def rank_update_header(player):
+        print(f"\nUpdating {player.last_name}, {player.first_name}")

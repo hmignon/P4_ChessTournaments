@@ -1,4 +1,4 @@
-from chess_tournaments.controllers.database import DatabaseController
+from chess_tournaments.models.tournament import Tournament
 from chess_tournaments.views.menu import MenuViews
 from chess_tournaments.views.reports import Reports
 
@@ -8,7 +8,6 @@ class ReportsController:
     def __init__(self):
         self.menu_view = MenuViews()
         self.reports_view = Reports()
-        self.db = DatabaseController()
 
     def all_players_name(self, players):
         """Player report (sorted by last name)
@@ -40,7 +39,7 @@ class ReportsController:
 
     def all_tournaments(self):
         """All tournaments report"""
-        self.reports_view.display_tournaments_report(self.db.load_tournament_db())
+        self.reports_view.display_tournaments_report(Tournament.load_tournament_db())
 
     def tournament_rounds(self):
         """All rounds from a tournament"""
@@ -72,7 +71,7 @@ class ReportsController:
 
         @return: user selection, list of all tournaments
         """
-        tournaments = self.db.load_tournament_db()
+        tournaments = Tournament.load_tournament_db()
         self.menu_view.select_tournament(tournaments)
         self.menu_view.input_prompt()
         user_input = input()

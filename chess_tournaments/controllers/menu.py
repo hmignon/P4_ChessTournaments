@@ -1,4 +1,3 @@
-from chess_tournaments.controllers.database import DatabaseController
 from chess_tournaments.controllers.reports import ReportsController
 from chess_tournaments.controllers.tournament import TournamentController
 from chess_tournaments.models.player import Player
@@ -12,7 +11,6 @@ class MenuController:
         self.menu_view = MenuViews()
         self.tour_cont = TournamentController()
         self.reports_cont = ReportsController()
-        self.db = DatabaseController()
 
     def main_menu_start(self):
         """Main menu selector :
@@ -131,7 +129,7 @@ class MenuController:
         @param players_total: number of players (int)
         @return: list of selected players
         """
-        players = self.db.load_player_db()
+        players = Player.load_player_db()
         id_list = []
         for i in range(len(players)):
             id_list.append(players[i]["id"])
@@ -161,7 +159,7 @@ class MenuController:
 
     def resume_tournament(self):
         """Select existing tournament to resume"""
-        tournament_list = self.db.load_tournament_db()
+        tournament_list = Tournament.load_tournament_db()
 
         self.menu_view.select_tournament(tournament_list)
         self.menu_view.input_prompt()
@@ -229,7 +227,7 @@ class MenuController:
 
     def update_player(self):
         """Update existing player info"""
-        players = self.db.load_player_db()
+        players = Player.load_player_db()
 
         self.menu_view.select_players(players, "to update")
         self.menu_view.input_prompt()
@@ -288,7 +286,7 @@ class MenuController:
         user_input = input()
 
         if user_input == "1":
-            self.player_reports_sorting(self.db.load_player_db())
+            self.player_reports_sorting(Player.load_player_db())
 
         elif user_input == "2":
             self.player_reports_sorting(self.reports_cont.tournament_players())
@@ -319,7 +317,10 @@ class MenuController:
             self.main_menu_start()
 
     def player_reports_sorting(self, players):
-        """Select sorting option (name or rank) for players"""
+        """Select sorting option (name or rank) for players
+
+        @param players: list of players
+        """
         self.menu_view.reports_player_sorting()
         self.menu_view.input_prompt()
         user_input = input()
