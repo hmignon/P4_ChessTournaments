@@ -15,7 +15,7 @@ class ReportsController:
         @param players: list of players
         """
         players = sorted(players, key=lambda x: x.get('last_name'))
-        self.reports_view.display_players(players)
+        self.reports_view.display_players(players, "by name")
 
     def all_players_rank(self, players):
         """Player report (sorted by rank)
@@ -23,7 +23,7 @@ class ReportsController:
         @param players: list of players
         """
         players = sorted(players, key=lambda x: x.get('rank'))
-        self.reports_view.display_players(players)
+        self.reports_view.display_players(players, "by rank")
 
     def tournament_players(self):
         """Players in a tournament report

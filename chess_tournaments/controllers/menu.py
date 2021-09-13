@@ -38,6 +38,7 @@ class MenuController:
         elif user_input == "exit":
             self.menu_view.are_you_sure_exit()
             user_input = input().lower()
+
             if user_input == "y":
                 exit()
             elif user_input == "n":
@@ -54,9 +55,7 @@ class MenuController:
         options = [
             "name",
             "location",
-            "description",
-            "amount of players (8 default)",
-            "amount of rounds (4 default)",
+            "description"
         ]
 
         for item in options:
@@ -70,7 +69,7 @@ class MenuController:
                 tournament_info.append(user_input)
 
         tournament_info.append(self.input_time_control())
-        tour_players = self.select_players(int(tournament_info[3]))
+        tour_players = self.select_players(8)
 
         self.menu_view.review_tournament(tournament_info, tour_players)
         user_input = input().lower()
@@ -83,7 +82,7 @@ class MenuController:
                 start_date="Not started",
                 end_date="TBD",
                 description=tournament_info[2],
-                time_control=tournament_info[5],
+                time_control=tournament_info[3],
                 players=tour_players,
                 current_round=1,
                 rounds=[]
@@ -144,6 +143,9 @@ class MenuController:
 
             if user_input == "back":
                 self.main_menu_start()
+
+            elif not user_input.isdigit():
+                self.menu_view.input_error()
 
             elif int(user_input) in id_list:
                 index = id_list.index(int(user_input))

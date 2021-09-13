@@ -41,9 +41,9 @@ class MenuViews:
         print("\n\nNew tournament created :\n")
         print(f"{info[0].upper()}, {info[1].title()}", end=' | ')
         print(f"Description : {info[2]}", end=' | ')
-        print(f"Rounds : {info[4]}", end=' | ')
-        print(f"Time control : {info[5]}")
-        print(f"\nPlayers ({info[3]} total) :\n")
+        print("Rounds : 4", end=' | ')
+        print(f"Time control : {info[3]}")
+        print("\nPlayers (8 total) :\n")
 
         for item in players:
             print(f"Player {players.index(item) + 1} : ", end='')

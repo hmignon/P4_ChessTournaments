@@ -159,7 +159,7 @@ class TournamentController:
 
         return available_list, players_added
 
-    def end_of_round(self, scores_list, t):
+    def end_of_round(self, scores_list: list, t):
         """End of round : update player scores
 
         @param t: current tournament
@@ -204,7 +204,7 @@ class TournamentController:
             self.input_scores()
 
     @staticmethod
-    def update_scores(players, scores_list):
+    def update_scores(players, scores_list: list):
         """Update player scores
 
         @param players: list of players
@@ -257,12 +257,12 @@ class TournamentController:
 
         players = t.players
 
-        if user_input == "y":
-            for i in range(len(players)):
-                players = self.update_ranks(players)
-
-        elif user_input == "n":
+        if user_input == "n":
             self.back_to_menu()
+
+        elif user_input == "y":
+            while True:
+                self.update_ranks(players)
 
     def update_ranks(self, players):
         """Update player ranks and save to DB

@@ -15,6 +15,7 @@ _Testé sous Windows 10 - Python version 3.9.5_
 2. [Options des menus](#id-section2)
     1. [Menu principal](#section2-1)
     2. [Rapports](#section2-2)
+3. [Exemples d'affichage](#section3)
 
 
 <div id='id-section1'></div>
@@ -85,21 +86,21 @@ _Dernier rapport exporté :_
 <div id='id-section2-1'></div>
 
 #### i. Menu Principal
-1. Créer un nouveau tournoi
-2. Reprendre tournoi existant
-3. Créer un nouveau joueur
-4. Modifier un joueur existant
-5. Rapports
+![main_menu](img/main_menu.png)
 
 <div id='id-section2-2'></div>
 
-#### ii. Rapports
-1. Tous les joueurs
-   1. Classer par nom
-   2. Classer par rang
-2. Tous les joueurs d'un tournoi
-   1. Classer par nom
-   2. Classer par rang
-3. Tous les tournois
-4. Toutes les rondes d'un tournoi
-5. Tous les matchs d'un tournoi
+#### ii. Menu des rapports
+![main_menu](img/reports_menu.png)
+
+<div id='id-section3'></div>
+
+## 3. Exemples d'affichage
+#### Matchs d'une ronde :
+![round](img/round_example.png)
+
+#### Rapport des joueurs :
+![player_report](img/players_report.png)
+
+#### Rapport des rondes :
+![round_report](img/rounds_report.png)

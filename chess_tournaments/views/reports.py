@@ -45,7 +45,7 @@ class Reports:
             "Matches"
         ]
 
-    def display_players(self, players):
+    def display_players(self, players, sorting):
         """Display player report (all sorting types)"""
         self.table.clear()
         self.table.field_names = self.player_report_field_names
@@ -61,7 +61,7 @@ class Reports:
                 players[i]["rank"]
             ])
 
-        print("\n\n\n- All players -\n")
+        print(f"\n\n\n- All players ({sorting}) -\n")
         print(self.table)
 
     def display_tournaments_report(self, tournaments):
@@ -89,7 +89,7 @@ class Reports:
                 participants
             ])
 
-        print("\n\n\n- All tournaments -")
+        print("\n\n\n- All tournaments -\n")
         print(self.table)
 
     def display_matches_report(self, matches):
@@ -102,7 +102,7 @@ class Reports:
             matches[i].insert(3, "vs.")
             self.table.add_row(matches[i])
 
-        print(f"\n\n\n- All played matches ({len(matches)} total) -")
+        print(f"\n\n- All played matches ({len(matches)} total) -\n")
         print(self.table)
 
     def display_rounds_report(self, rounds):
@@ -112,14 +112,23 @@ class Reports:
         self.table.align = "l"
 
         for i in range(len(rounds)):
-            self.table.add_row([
-                rounds[i][0],
-                rounds[i][1],
-                rounds[i][2],
-                rounds[i][3]
-            ])
+            for j in range(4):
+                if j == 0:
+                    self.table.add_row([
+                        rounds[i][0],
+                        rounds[i][1],
+                        rounds[i][2],
+                        rounds[i][3][j]
+                    ])
+                else:
+                    self.table.add_row([
+                        ' ',
+                        ' ',
+                        ' ',
+                        rounds[i][3][j]
+                    ])
 
-        print("\n\n\n- All played rounds -")
+        print("\n\n- All played rounds -\n")
         print(self.table)
 
     @staticmethod
